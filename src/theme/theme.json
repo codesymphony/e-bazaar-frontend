@@ -1,0 +1,13 @@
+{
+  "colors": {
+    "primaryDark": "#0083B0",
+    "primaryLight": "#00B4DB",
+    "shadyWhite": "#F8F8F8",
+    "lightGrey": "#AAAAAA",
+    "grey": "#C2C2C2",
+    "darkGrey": "#444444",
+    "white": "#FFFFFF",
+    "black": "#000000",
+    "red": "#FF5733"
+  }
+}

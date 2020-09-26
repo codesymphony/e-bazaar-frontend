@@ -1,0 +1,24 @@
+{
+  "processors": [
+  ],
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-airbnb"
+  ],
+  "rules": {
+    "indentation": 2,
+    "string-quotes": "single",
+    "no-duplicate-selectors": true,
+    "color-hex-case": "lower",
+    "color-hex-length": "long",
+    "color-named": "never",
+    "selector-no-qualifying-type": true,
+    "selector-combinator-space-after": "always",
+    "declaration-block-trailing-semicolon": "always",
+    "declaration-colon-space-before": "never",
+    "declaration-colon-space-after": "always",
+    "number-leading-zero": "always",
+    "font-weight-notation": "numeric",
+    "font-family-name-quotes": "always-where-recommended"
+  }
+}
