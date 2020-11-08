@@ -3,15 +3,15 @@ import { gql } from 'apollo-boost';
 import { userFragment } from '../fragments';
 
 export default gql`
-  mutation createUser(
+  mutation signUpUser(
     $firstName: String!
     $lastName: String!
     $email: String!
     $password: String!
-    $gender: String!
+    $gender: UserGender!
     $mobileNumber: String!
   ) {
-    createUser(
+    signUpUser(
       input: {
         firstName: $firstName
         lastName: $lastName

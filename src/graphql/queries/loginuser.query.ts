@@ -4,7 +4,7 @@ import { userFragment } from '../fragments';
 
 export default gql`
   query signInUser($email: String!, $password: String!) {
-    signinUser(email: $email, password: $password) {
+    signInUser(email: $email, password: $password) {
       tokens {
         idToken
         accessToken

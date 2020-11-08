@@ -17,11 +17,11 @@ import { loginUserQuery } from '@graphql/queries';
 import { commonToastOptions, formatGraphQlErrorMessage } from '@utils/index';
 
 interface CreateUserMutationData {
-  createUser: User;
+  signUpUser: User;
 }
 
 interface LoginUserQueryData {
-  signinUser: SignInResponse;
+  signInUser: SignInResponse;
 }
 
 export const signUpEpic: Epic<RootAction, RootAction, RootState> = (
@@ -38,13 +38,13 @@ export const signUpEpic: Epic<RootAction, RootAction, RootState> = (
         }),
       ).pipe(
         map(response => {
-          if (response.data?.createUser) {
-            toast(`Welcome ${response.data.createUser.firstName}`, {
+          if (response.data?.signUpUser) {
+            toast(`Welcome ${response.data.signUpUser.firstName}`, {
               type: 'success',
               ...commonToastOptions,
             });
 
-            return authActions.signUpSuccess(response.data.createUser);
+            return authActions.signUpSuccess(response.data.signUpUser);
           }
 
           const errorMessage = 'user not created';
@@ -88,7 +88,7 @@ export const loginEpic: Epic<RootAction, RootAction, RootState> = (
         }),
       ).pipe(
         map(response => {
-          if (response.data?.signinUser?.tokens) {
+          if (response.data?.signInUser?.tokens) {
             toast(`Login successful`, {
               type: 'success',
               ...commonToastOptions,
@@ -97,13 +97,13 @@ export const loginEpic: Epic<RootAction, RootAction, RootState> = (
               idToken,
               accessToken,
               refreshToken,
-            } = response.data.signinUser.tokens;
+            } = response.data.signInUser.tokens;
 
             localStorage.setItem('idToken', JSON.stringify(idToken));
             localStorage.setItem('accessToken', JSON.stringify(accessToken));
             localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
 
-            return authActions.signInSuccess(response.data.signinUser);
+            return authActions.signInSuccess(response.data.signInUser);
           }
           const errorMessage = 'Login unsuccessful';
 
