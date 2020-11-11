@@ -58,7 +58,7 @@ const LoginForm: React.FC = () => {
 
   React.useEffect(() => {
     if (signInTokens && signInLoading === false) {
-      history.push('/');
+      history.push('/dashboard');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signInLoading, signInTokens]);

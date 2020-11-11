@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'simplebar/dist/simplebar.min.css';
 
 import Authentication from '@components/Authentication';
+import Dashboard from '@components/Dashboard';
+
 
 const Container = styled.div`
   position: relative;
@@ -20,6 +22,9 @@ const Main: React.FC = () => {
       <Switch>
         <Route path="/auth">
           <Authentication />
+        </Route>
+        <Route path="/dashboard" >
+          <Dashboard />
         </Route>
         <Route path="/">
           <Redirect to="/auth" />
