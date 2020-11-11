@@ -61,7 +61,7 @@ const renderDateCells = (
 const ReactCalendar: React.FC<CalendarProps> = ({
   selectedDate,
   onDateChange,
-  show = true
+  show = true,
 }) => {
   const [state, updateState]: [
     CalendarState,

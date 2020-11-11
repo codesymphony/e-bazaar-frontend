@@ -65,3 +65,10 @@ export type RegistrationFormFields = Record<
 >;
 
 export type LoginFormFields = Record<keyof LoginFormData, FieldConfig>;
+
+export type CalendarDate = {
+  date: moment.Moment;
+  active: boolean;
+};
+
+export type CalendarDates = { [key: string]: CalendarDate[] };
