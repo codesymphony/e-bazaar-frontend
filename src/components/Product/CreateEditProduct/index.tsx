@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'rsuite';
 
 import ReactCalendar from '@components/common/React-Calendar';
 
@@ -17,6 +18,7 @@ const CreateEditProduct: React.FC = () => {
             console.log(timestamp);
           }}
         />
+        <Button>Click!</Button>
       </div>
     </>
   );

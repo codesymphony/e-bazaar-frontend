@@ -1,5 +1,6 @@
 import React from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import localeData from 'dayjs/plugin/localeData';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 
 import {
@@ -17,27 +18,29 @@ import { generateCalendarDates } from './utils';
 import { CalendarDates } from '@typings/types';
 import { enhancedReducer, ReducerDispatch } from '@utils/index';
 
+dayjs.extend(localeData);
+
 interface CalendarState {
-  selectedDate: moment.Moment;
+  selectedDate: dayjs.Dayjs;
   weekdays: string[];
   calendarDates?: CalendarDates;
 }
 
 interface CalendarProps {
   show?: boolean;
-  selectedDate?: moment.Moment;
+  selectedDate?: dayjs.Dayjs;
   onDateChange(timestamp: number): void;
 }
 
 const initialState: CalendarState = {
-  selectedDate: moment(),
-  weekdays: moment.weekdaysShort(),
+  selectedDate: dayjs(),
+  weekdays: dayjs.weekdaysShort(),
 };
 
 const renderDateCells = (
   weekday: string,
   calendarDates: CalendarDates,
-  selectedDate: moment.Moment,
+  selectedDate: dayjs.Dayjs,
   onDateChange: (timestamp: number) => void,
 ) => {
   const datesArray = calendarDates[weekday];
@@ -78,14 +81,14 @@ const ReactCalendar: React.FC<CalendarProps> = ({
     updateState(prevState => {
       return {
         ...prevState,
-        selectedDate: moment(prevState.selectedDate).subtract(1, 'month'),
+        selectedDate: dayjs(prevState.selectedDate).subtract(1, 'month'),
       };
     });
   }, []);
 
   const navigateNextMonth = React.useCallback(() => {
     updateState({
-      selectedDate: moment(state.selectedDate).add(1, 'month'),
+      selectedDate: dayjs(state.selectedDate).add(1, 'month'),
     });
   }, [state.selectedDate]);
 
@@ -93,7 +96,7 @@ const ReactCalendar: React.FC<CalendarProps> = ({
     (timestamp: number) => {
       onDateChange(timestamp);
 
-      updateState({ selectedDate: moment(timestamp) });
+      updateState({ selectedDate: dayjs(timestamp) });
     },
     [onDateChange],
   );

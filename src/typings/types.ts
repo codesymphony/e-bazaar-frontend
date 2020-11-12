@@ -1,4 +1,5 @@
 import { ValidationOptions } from 'react-hook-form';
+import { Dayjs } from 'dayjs';
 
 export interface User {
   id: string;
@@ -67,7 +68,7 @@ export type RegistrationFormFields = Record<
 export type LoginFormFields = Record<keyof LoginFormData, FieldConfig>;
 
 export type CalendarDate = {
-  date: moment.Moment;
+  date: Dayjs;
   active: boolean;
 };
 

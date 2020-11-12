@@ -1,18 +1,23 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 
 import { CalendarDates, CalendarDate } from '@typings/types';
 
+dayjs.extend(isSameOrBefore);
+dayjs.extend(isSameOrAfter);
+
 export const generateCalendarDates = (
-  dateContext: moment.Moment = moment(),
+  dateContext: dayjs.Dayjs = dayjs(),
 ): CalendarDates => {
   const calendarDates: CalendarDates = {};
 
-  const startOfMonth = moment(dateContext).startOf('month');
-  const endOfMonth = moment(dateContext).endOf('month');
-  const monthWeekStart = moment(startOfMonth).startOf('week');
-  const monthWeekEnd = moment(endOfMonth).endOf('week');
+  const startOfMonth = dayjs(dateContext).startOf('month');
+  const endOfMonth = dayjs(dateContext).endOf('month');
+  const monthWeekStart = dayjs(startOfMonth).startOf('week');
+  const monthWeekEnd = dayjs(endOfMonth).endOf('week');
 
-  const momentPointer = monthWeekStart.clone();
+  let momentPointer = monthWeekStart;
 
   while (momentPointer.isSameOrBefore(monthWeekEnd)) {
     const weekday = momentPointer.format('ddd');
@@ -31,7 +36,7 @@ export const generateCalendarDates = (
 
     calendarDates[weekday].push(dateInfo);
 
-    momentPointer.add(1, 'day');
+    momentPointer = momentPointer.add(1, 'day');
   }
 
   return calendarDates;
