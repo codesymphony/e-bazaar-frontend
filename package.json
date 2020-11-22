@@ -78,6 +78,7 @@
     "apollo-boost": "^0.4.9",
     "dayjs": "^1.9.6",
     "graphql": "^15.0.0",
+    "hamburger-react": "^2.3.0",
     "immer": "^6.0.9",
     "lodash": "^4.17.15",
     "moment": "^2.26.0",
